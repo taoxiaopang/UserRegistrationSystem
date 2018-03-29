@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User Registration System</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+</head>
+
+<body ng-app="userregistrationsystem">
+  <div class="page-header text-center">
+    <h2>User Registration System</h2>
+  </div>
+
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm navbar-light bg-faded">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">User Registration System</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-tabs">
+          <li class="navbar-item active"><a class="nav-link" href="#/" class="btn btn-info navbar-btn" role="button">Home</a></li>
+          <li class="navbar-item"><a class="nav-link" href="#/register-new-user" class="btn btn-info navbar-btn" role="button">Register New User</a></li>
+          <li class="navbar-item"><a class="nav-link" href="#/list-all-users" class="btn btn-info navbar-btn" role="button">List All Users</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div ng-view></div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/controllers/listUserController.js"></script>
+  <script src="/js/controllers/registerUserController.js"></script>
+  <script src="/js/controllers/updateUserController.js"></script>
+</body>
+</html>
