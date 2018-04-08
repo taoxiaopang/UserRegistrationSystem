@@ -1,7 +1,7 @@
 /**
  *
  */
-var app = angular.module('userregistrationsystem', ['ngRoute']);
+var app = angular.module('userregistrationsystem', ['ngRoute', 'ngResource']);
 
 app.config(function($locationProvider, $routeProvider) {
 	$locationProvider.hashPrefix('');
@@ -24,3 +24,7 @@ app.config(function($locationProvider, $routeProvider) {
 	});
 
 });
+
+app.config(['$httpProvider', function($httpProvider) {
+	$httpProvider.interceptors.push('AuthInterceptor');
+}]);
