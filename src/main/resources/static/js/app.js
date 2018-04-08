@@ -6,6 +6,10 @@ var app = angular.module('userregistrationsystem', ['ngRoute', 'ngResource']);
 app.config(function($locationProvider, $routeProvider) {
 	$locationProvider.hashPrefix('');
 	$routeProvider
+	.when('/', {
+		controller: 'HomeController',
+		templateUrl: '/views/home.html'
+	})
 	.when('/list-all-users', {
 		controller: 'ListUserController',
 		templateUrl: '/views/listUser.html'
@@ -18,13 +22,21 @@ app.config(function($locationProvider, $routeProvider) {
 		controller: 'UpdateUserController',
 		templateUrl: 'views/userUpdate.html'
 	})
+	.when('/login', {
+		controller: 'LoginController',
+		templateUrl: '/views/login.html'
+	})
+	.when('/logout', {
+		controller: 'LogoutController',
+		templateUrl: '/views/login.html'
+	})
 	.otherwise({
-		redirectTo: '/home',
-		templateUrl: 'views/home.html'
+		redirectTo: '/login'
 	});
 
 });
 
 app.config(['$httpProvider', function($httpProvider) {
-	$httpProvider.interceptors.push('AuthInterceptor');
+	//$httpProvider.interceptors.push('AuthInterceptor');
+	$httpProvider.defaults.headers.common["X-Requested-Width"] = 'XMLHttpRequest';
 }]);

@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 //@EnableWebSecurity
@@ -41,13 +42,14 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //allow anonymous access to the static resources such as /login/login.html, /template/home.html, and /,
+        //because these HTML resources need to be available to anonymous users.
         http.httpBasic().realmName("User Registration System")
         .and().authorizeRequests()
-        .antMatchers(HttpMethod.GET, "/api/user/").hasRole("USER")
-        .antMatchers(HttpMethod.POST, "/api/user/").hasRole("USER")
-        .antMatchers(HttpMethod.PUT, "/api/user/**").hasRole("USER")
-        .antMatchers(HttpMethod.DELETE, "/api/user/**").hasRole("ADMIN")
-        .and().csrf().disable();
+        .antMatchers("/views/login.html", "/views/home.html", "/").permitAll()
+        .anyRequest().authenticated()
+        .and().csrf()
+        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         
         //https://stackoverflow.com/questions/45382328/connecting-to-h2-database-from-h2-console
         http.headers().frameOptions().disable();

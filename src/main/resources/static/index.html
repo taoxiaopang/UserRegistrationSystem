@@ -15,17 +15,29 @@
     <h2>User Registration System</h2>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid"  ng-show="!authenticated">
     <nav class="navbar navbar-expand-sm navbar-light bg-faded">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">User Registration System</a>
+        <div class="collapse navbar-collapse" ng-show="!authenticated">
+        <ul class="nav navbar-tabs">
+          <li class="navbar-item"><a class="nav-link" href="#/login" class="btn btn-info navbar-btn" role="button">Login</a>
+          <p>Login to go to Home Page</p></li>
+        </ul>
       </div>
+    </nav>
+  </div>
+
+  <div class="container-fluid"  ng-show="authenticated">
+    <nav class="navbar navbar-expand-sm navbar-light bg-faded">
+      <!--<div class="navbar-header">
+        <a class="navbar-brand" href="#"></a>
+      </div>-->
 
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-tabs">
           <li class="navbar-item active"><a class="nav-link" href="#/" class="btn btn-info navbar-btn" role="button">Home</a></li>
           <li class="navbar-item"><a class="nav-link" href="#/register-new-user" class="btn btn-info navbar-btn" role="button">Register New User</a></li>
           <li class="navbar-item"><a class="nav-link" href="#/list-all-users" class="btn btn-info navbar-btn" role="button">List All Users</a></li>
+          <li class="navbar-item"><a class="nav-link" href="#/logout" class="btn btn-danger navbar-btn pull-right" role="button">Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -37,6 +49,9 @@
   <script src="/js/controllers/listUserController.js"></script>
   <script src="/js/controllers/registerUserController.js"></script>
   <script src="/js/controllers/updateUserController.js"></script>
+  <script src="/js/controllers/homeController.js"></script>
+  <script src="/js/controllers/loginController.js"></script>
+  <script src="/js/controllers/logoutController.js"></script>
   <script src="/js/services/authInterceptor.js"></script>
 </body>
 </html>
